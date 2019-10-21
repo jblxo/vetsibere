@@ -8,5 +8,10 @@ namespace vetsibere
         {
             InitializeComponent();
         }
+
+        private void NudPlyrCount_ValueChanged(object sender, System.EventArgs e)
+        {
+            GameData.Instance.PlayersCount = (int) nudPlyrCount.Value;
+        }
     }
 }
