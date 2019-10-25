@@ -1,6 +1,6 @@
 ﻿namespace vetsibere
 {
-    partial class PlayerCard
+    partial class PlayerUC
     {
         /// <summary> 
         /// Required designer variable.

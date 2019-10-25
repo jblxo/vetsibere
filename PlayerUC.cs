@@ -10,11 +10,20 @@ using System.Windows.Forms;
 
 namespace vetsibere
 {
-    public partial class PlayerCard : UserControl
+    public partial class PlayerUC : UserControl
     {
-        public PlayerCard()
+        public int PlayerNum { get; }
+
+        public PlayerUC(int playerNum)
         {
             InitializeComponent();
+
+            this.PlayerNum = playerNum;
+        }
+
+        public void RefreshData()
+        {
+
         }
     }
 }

@@ -60,11 +60,12 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayerCard.cs">
+    <Compile Include="Player.cs" />
+    <Compile Include="PlayerUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PlayerCard.Designer.cs">
-      <DependentUpon>PlayerCard.cs</DependentUpon>
+    <Compile Include="PlayerUC.Designer.cs">
+      <DependentUpon>PlayerUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
