@@ -28,10 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.LblPlayerName = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // LblPlayerName
+            // 
+            this.LblPlayerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LblPlayerName.Location = new System.Drawing.Point(3, 0);
+            this.LblPlayerName.Name = "LblPlayerName";
+            this.LblPlayerName.Size = new System.Drawing.Size(244, 41);
+            this.LblPlayerName.TabIndex = 0;
+            this.LblPlayerName.Text = "Jméno hráče";
+            this.LblPlayerName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PlayerUC
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.LblPlayerName);
+            this.Name = "PlayerUC";
+            this.Size = new System.Drawing.Size(250, 350);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label LblPlayerName;
     }
 }

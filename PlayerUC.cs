@@ -1,29 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace vetsibere
 {
-    public partial class PlayerUC : UserControl
+    partial class PlayerUC : UserControl
     {
-        public int PlayerNum { get; }
+        private Player player;
 
-        public PlayerUC(int playerNum)
+        public PlayerUC(Player player)
         {
             InitializeComponent();
 
-            this.PlayerNum = playerNum;
+            this.player = player;
+            this.LblPlayerName.Text = player.PlayerNum + "";
         }
 
         public void RefreshData()
         {
-
         }
     }
 }
