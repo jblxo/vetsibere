@@ -8,5 +8,10 @@ namespace vetsibere
         {
             InitializeComponent();
         }
+
+        private void BtnRound_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
