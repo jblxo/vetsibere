@@ -30,11 +30,6 @@ namespace vetsibere
         /// <returns>New Player</returns>
         public Player CreatePlayer(int userId, List<Card> cards)
         {
-            foreach (var card in cards)
-            {
-                card.Owner = userId;
-            }
-
             Player player = new Player(userId, cards);
             return player;
         }

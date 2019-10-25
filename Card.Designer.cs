@@ -37,9 +37,9 @@
             // lblName
             // 
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblName.Location = new System.Drawing.Point(55, 20);
+            this.lblName.Location = new System.Drawing.Point(0, 20);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(100, 23);
+            this.lblName.Size = new System.Drawing.Size(200, 23);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "cardName";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -55,9 +55,9 @@
             // lblValue
             // 
             this.lblValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblValue.Location = new System.Drawing.Point(52, 59);
+            this.lblValue.Location = new System.Drawing.Point(0, 59);
             this.lblValue.Name = "lblValue";
-            this.lblValue.Size = new System.Drawing.Size(96, 23);
+            this.lblValue.Size = new System.Drawing.Size(200, 23);
             this.lblValue.TabIndex = 2;
             this.lblValue.Text = "value";
             this.lblValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

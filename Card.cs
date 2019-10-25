@@ -15,7 +15,7 @@ namespace vetsibere
         public CardNames CardName { get; set; }
         public CardTypes Type { get; set; }
         public string ImagePath { get; set; } = Application.StartupPath + "\\Images\\";
-        public int Owner { get; set; }
+        public Player Owner { get; set; }
         public Card(CardTypes type, CardNames name)
         {
             Type = type;
@@ -23,8 +23,8 @@ namespace vetsibere
 
             InitializeComponent();
 
-            lblName.Text = Type + " " + (int) CardName;
-            lblValue.Text = CardName.ToString();
+            lblName.Text = Type + " " + CardName;
+            lblValue.Text = (int) CardName + "";
         }
     }
 

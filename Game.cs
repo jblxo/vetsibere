@@ -9,10 +9,16 @@ namespace vetsibere
     {
         private readonly Factory _factory;
         private List<Player> players;
+
+        /// <summary>
+        /// Current cards on the field
+        /// </summary>
+        private List<Card> cards;
         public Game()
         {
             _factory = new Factory();
             players = GameData.Instance.Players;
+            cards = new List<Card>();
 
             InitializeComponent();
         }
@@ -22,12 +28,6 @@ namespace vetsibere
             GenerateCards();
             ShuffleCards();
             DistributeCards();
-
-            foreach (var player in players)
-            {
-                Card card = player.PopCard();
-                DisplayCard(card);
-            }
         }
 
         /// <summary>
@@ -104,7 +104,72 @@ namespace vetsibere
         /// <param name="e">Event Args</param>
         private void BtnRound_Click(object sender, EventArgs e)
         {
+            EmptyField();
+            TakePlayersCards();
+            List<Card> winners = GetWinnerCards();
+            Player winner = CheckWinner(winners);
+            winner.AddCards(cards);
+            CheckEnd();
+        }
 
+        private void CheckEnd()
+        {
+            foreach (var player in players)
+            {
+                Console.WriteLine("Cards left: " + player.Cards.Count);
+                if (player.Cards.Count == 0)
+                {
+                    this.Close();
+                }
+            }
+        }
+
+        private Player CheckWinner(List<Card> winners)
+        {
+            if (winners.Count == 1)
+            {
+                var winner = winners[0];
+                return winner.Owner;
+            }
+            
+            // TODO: implement cards with same value
+
+            return null;
+        }
+
+        /// <summary>
+        /// Empty the field and cards list
+        /// </summary>
+        private void EmptyField()
+        {
+            cards.Clear();
+            gameField.Controls.Clear();
+        }
+
+        /// <summary>
+        /// Returns list of cards with highest value on the field
+        /// </summary>
+        /// <returns>List of cards with highest value</returns>
+        private List<Card> GetWinnerCards()
+        {
+            var highestValueCard = cards.Max(x => (int) x.CardName);
+            var winnerCards = cards.Where(x => (int) x.CardName == highestValueCard).ToList();
+            return winnerCards;
+        }
+
+
+        /// <summary>
+        /// Removes card from top of player's deck and puts it on the field
+        /// </summary>
+        private void TakePlayersCards()
+        {
+            foreach (var player in players)
+            {
+                Card card = player.PopCard();
+                cards.Add(card);
+                DisplayCard(card);
+                player.RemoveCard(card);
+            }
         }
     }
 }
