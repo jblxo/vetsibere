@@ -30,6 +30,7 @@
         {
             this.gameField = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnRound = new System.Windows.Forms.Button();
+            this.playerUCPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // gameField
@@ -37,7 +38,7 @@
             this.gameField.Location = new System.Drawing.Point(2, 1);
             this.gameField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gameField.Name = "gameField";
-            this.gameField.Size = new System.Drawing.Size(815, 382);
+            this.gameField.Size = new System.Drawing.Size(1206, 230);
             this.gameField.TabIndex = 0;
             // 
             // BtnRound
@@ -52,11 +53,20 @@
             this.BtnRound.UseVisualStyleBackColor = true;
             this.BtnRound.Click += new System.EventHandler(this.BtnRound_Click);
             // 
+            // playerUCPanel
+            // 
+            this.playerUCPanel.Location = new System.Drawing.Point(2, 235);
+            this.playerUCPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.playerUCPanel.Name = "playerUCPanel";
+            this.playerUCPanel.Size = new System.Drawing.Size(1206, 70);
+            this.playerUCPanel.TabIndex = 1;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 465);
+            this.ClientSize = new System.Drawing.Size(1211, 465);
+            this.Controls.Add(this.playerUCPanel);
             this.Controls.Add(this.BtnRound);
             this.Controls.Add(this.gameField);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -71,5 +81,6 @@
 
         private System.Windows.Forms.FlowLayoutPanel gameField;
         private System.Windows.Forms.Button BtnRound;
+        private System.Windows.Forms.FlowLayoutPanel playerUCPanel;
     }
 }

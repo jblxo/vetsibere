@@ -11,11 +11,13 @@ namespace vetsibere
             InitializeComponent();
 
             this.player = player;
-            this.LblPlayerName.Text = player.PlayerNum + "";
+            this.LblPlayerName.Text = player.Name;
+            RefreshData();
         }
 
         public void RefreshData()
         {
+            this.lblCardsLeft.Text = player.Cards.Count.ToString();
         }
     }
 }

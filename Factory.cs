@@ -33,5 +33,16 @@ namespace vetsibere
             Player player = new Player(userId, cards);
             return player;
         }
+
+        /// <summary>
+        /// Creates a new Player UC
+        /// </summary>
+        /// <param name="player">Player to create UC from</param>
+        /// <returns>A new Player UC</returns>
+        public PlayerUC CreatePlayerUc(Player player)
+        {
+            PlayerUC playerUc = new PlayerUC(player);
+            return playerUc;
+        }
     }
 }

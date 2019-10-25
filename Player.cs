@@ -10,12 +10,15 @@ namespace vetsibere
     {
         public readonly int PlayerNum;
         public List<Card> Cards { get; }
+        public string Name { get; set; }
 
         public Player(int playerNum, List<Card> cards)
         {
+            this.Name = "Player " + playerNum;
             foreach (var card in cards)
             {
                 card.Owner = this;
+                card.DisplayOwnerName();
             }
 
             this.PlayerNum = playerNum;
@@ -23,12 +26,14 @@ namespace vetsibere
         }
 
         /// <summary>
-        /// Returns next card in players deck
+        /// Removes and returns next card in players deck
         /// </summary>
         /// <returns>Card</returns>
         public Card PopCard()
         {
-            return this.Cards.ElementAtOrDefault(0);
+            Card card = Cards.ElementAtOrDefault(0);
+            Cards.Remove(card);
+            return card;
         }
 
         /// <summary>

@@ -26,6 +26,11 @@ namespace vetsibere
             lblName.Text = Type + " " + CardName;
             lblValue.Text = (int) CardName + "";
         }
+
+        public void DisplayOwnerName()
+        {
+            lblOwner.Text = Owner.Name;
+        }
     }
 
     public enum CardTypes

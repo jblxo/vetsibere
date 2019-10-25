@@ -14,11 +14,17 @@ namespace vetsibere
         /// Current cards on the field
         /// </summary>
         private List<Card> cards;
+
+        /// <summary>
+        /// Cards that will be added after single player has won.
+        /// </summary>
+        private List<Card> cardsPile;
         public Game()
         {
             _factory = new Factory();
             players = GameData.Instance.Players;
             cards = new List<Card>();
+            cardsPile = new List<Card>();
 
             InitializeComponent();
         }
@@ -28,6 +34,19 @@ namespace vetsibere
             GenerateCards();
             ShuffleCards();
             DistributeCards();
+            AddPlayerUc();
+        }
+
+        /// <summary>
+        /// Adds Player UC to panel
+        /// </summary>
+        private void AddPlayerUc()
+        {
+            foreach (var player in players)
+            {
+                PlayerUC playerUc = _factory.CreatePlayerUc(player);
+                playerUCPanel.Controls.Add(playerUc);
+            }
         }
 
         /// <summary>
@@ -104,37 +123,81 @@ namespace vetsibere
         /// <param name="e">Event Args</param>
         private void BtnRound_Click(object sender, EventArgs e)
         {
+            PlayRound(players);
+            RefreshPlayerPanel();
+        }
+
+        /// <summary>
+        /// Refreshes Player UC data
+        /// </summary>
+        private void RefreshPlayerPanel()
+        {
+            List<PlayerUC> playerUcs = playerUCPanel.Controls.OfType<PlayerUC>().ToList();
+            foreach (var playerUc in playerUcs)
+            {
+                playerUc.RefreshData();
+            }
+        }
+
+        /// <summary>
+        /// Code which handles one player turn
+        /// </summary>
+        /// <param name="playersList">List of players who are currently playing</param>
+        private void PlayRound(List<Player> playersList)
+        {
             EmptyField();
-            TakePlayersCards();
+            TakePlayersCards(playersList);
             List<Card> winners = GetWinnerCards();
-            Player winner = CheckWinner(winners);
-            winner.AddCards(cards);
+            if (winners.Count > 1)
+            {
+                PlayRound(SelectWinnerPlayers(winners));
+            }
+            SelectWinnerPlayers(winners)[0].AddCards(cards);
             CheckEnd();
         }
 
+        /// <summary>
+        /// Removes players with no cards left. Check for game winner.
+        /// </summary>
         private void CheckEnd()
         {
+            List<Player> playersToRemove = new List<Player>();
+
             foreach (var player in players)
             {
-                Console.WriteLine("Cards left: " + player.Cards.Count);
                 if (player.Cards.Count == 0)
                 {
-                    this.Close();
+                    playersToRemove.Add(player);
                 }
+            }
+
+            foreach (var player in playersToRemove)
+            {
+                players.Remove(player);
+            }
+
+            if (players.Count == 0)
+            {
+                MessageBox.Show("Vyhral hrac " + players[0].Name);
+                Close();
             }
         }
 
-        private Player CheckWinner(List<Card> winners)
+        /// <summary>
+        /// Select players whose cards have won (same value)
+        /// </summary>
+        /// <param name="winners">List of cards</param>
+        /// <returns>List of players</returns>
+        private List<Player> SelectWinnerPlayers(List<Card> winners)
         {
-            if (winners.Count == 1)
-            {
-                var winner = winners[0];
-                return winner.Owner;
-            }
-            
-            // TODO: implement cards with same value
+            List<Player> winnerPlayers = new List<Player>(winners.Count);
 
-            return null;
+            foreach (var card in winners)
+            {
+                winnerPlayers.Add(card.Owner);
+            }
+
+            return winnerPlayers;
         }
 
         /// <summary>
@@ -147,13 +210,15 @@ namespace vetsibere
         }
 
         /// <summary>
-        /// Returns list of cards with highest value on the field
+        /// Returns list of cards with highest value on the field. Adds loser cards to cards pile.
         /// </summary>
         /// <returns>List of cards with highest value</returns>
         private List<Card> GetWinnerCards()
         {
             var highestValueCard = cards.Max(x => (int) x.CardName);
             var winnerCards = cards.Where(x => (int) x.CardName == highestValueCard).ToList();
+            var loserCards = cards.Where(x => (int)x.CardName != highestValueCard).ToList();
+            cardsPile.AddRange(loserCards);
             return winnerCards;
         }
 
@@ -161,14 +226,13 @@ namespace vetsibere
         /// <summary>
         /// Removes card from top of player's deck and puts it on the field
         /// </summary>
-        private void TakePlayersCards()
+        private void TakePlayersCards(List<Player> playersList)
         {
-            foreach (var player in players)
+            foreach (var player in playersList)
             {
                 Card card = player.PopCard();
                 cards.Add(card);
                 DisplayCard(card);
-                player.RemoveCard(card);
             }
         }
     }
