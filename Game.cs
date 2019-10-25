@@ -65,5 +65,10 @@ namespace vetsibere
 
             GameData.Instance.Cards = cards;
         }
+
+        private void BtnRound_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
