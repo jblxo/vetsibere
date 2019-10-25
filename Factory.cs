@@ -9,14 +9,34 @@ namespace vetsibere
     class Factory
     {
         public Factory() { }
-        public Card CreateCard(CardTypes type, int value)
+
+        /// <summary>
+        /// Generates Card
+        /// </summary>
+        /// <param name="type">Type for card</param>
+        /// <param name="name">Name for card</param>
+        /// <returns>New card</returns>
+        public Card CreateCard(CardTypes type, CardNames name)
         {
-            Card card = new Card
-            {
-                Type = type,
-                Value = value
-            };
+            Card card = new Card(type, name);
             return card;
+        }
+
+        /// <summary>
+        /// Generates a player with a deck
+        /// </summary>
+        /// <param name="userId">Player ID</param>
+        /// <param name="cards">Player's deck of Cards</param>
+        /// <returns>New Player</returns>
+        public Player CreatePlayer(int userId, List<Card> cards)
+        {
+            foreach (var card in cards)
+            {
+                card.Owner = userId;
+            }
+
+            Player player = new Player(userId, cards);
+            return player;
         }
     }
 }

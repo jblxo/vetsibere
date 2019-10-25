@@ -17,6 +17,10 @@ namespace vetsibere
             this.cards = cards;
         }
 
+        /// <summary>
+        /// Returns next card in players deck
+        /// </summary>
+        /// <returns>Card</returns>
         public Card PopCard()
         {
             return this.cards.ElementAtOrDefault(0);

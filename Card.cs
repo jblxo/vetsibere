@@ -12,15 +12,19 @@ namespace vetsibere
 {
     public partial class Card : UserControl
     {
-        private readonly Size _size = new Size(40, 120);
-        public Point Position = new Point(0, 0);
-        public int Value { get; set; } = -1;
+        public CardNames CardName { get; set; }
         public CardTypes Type { get; set; }
         public string ImagePath { get; set; } = Application.StartupPath + "\\Images\\";
-        public int Owner { get; set; } = -1;
-        public Card()
+        public int Owner { get; set; }
+        public Card(CardTypes type, CardNames name)
         {
+            Type = type;
+            CardName = name;
+
             InitializeComponent();
+
+            lblName.Text = Type + " " + (int) CardName;
+            lblValue.Text = CardName.ToString();
         }
     }
 
