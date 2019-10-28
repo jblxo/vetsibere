@@ -8,6 +8,13 @@ namespace vetsibere
         public Menu()
         {
             InitializeComponent();
+
+            FormClosed += Menu_FormClosed;
+        }
+
+        private void Menu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -27,7 +34,7 @@ namespace vetsibere
 
         private void BtnEnd_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         /// <summary>

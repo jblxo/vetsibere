@@ -5,6 +5,7 @@ namespace vetsibere
     partial class PlayerUC : UserControl
     {
         private Player player;
+        public Player Player { get { return this.player; } }
 
         public PlayerUC(Player player)
         {

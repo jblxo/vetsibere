@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace vetsibere
@@ -19,14 +20,36 @@ namespace vetsibere
         /// Cards that will be added after single player has won.
         /// </summary>
         private List<Card> cardsPile;
+
+        /// <summary>
+        /// Autoplay thread
+        /// </summary>
+        Thread autoPlayThread;
+
+        /// <summary>
+        /// Determines whether the autoplay thread should perform the click on button
+        /// </summary>
+        private bool autoPlayFlag;
         public Game()
         {
             _factory = new Factory();
             players = GameData.Instance.Players;
             cards = new List<Card>();
             cardsPile = new List<Card>();
+            autoPlayThread = new Thread(AutoPlay);
+            autoPlayThread.IsBackground = true;
+            autoPlayFlag = false;
+            autoPlayThread.Start();
 
             InitializeComponent();
+
+            FormClosed += Game_FormClosed;
+        }
+
+        private void Game_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            autoPlayFlag = false;
+            GameData.Instance.Players.Clear();
         }
 
         private void Game_Load(object sender, System.EventArgs e)
@@ -124,18 +147,21 @@ namespace vetsibere
         private void BtnRound_Click(object sender, EventArgs e)
         {
             PlayRound(players);
-            RefreshPlayerPanel();
         }
 
         /// <summary>
-        /// Refreshes Player UC data
+        /// Refreshes Player UC and Card data.
         /// </summary>
-        private void RefreshPlayerPanel()
+        private void RefreshPanels()
         {
             List<PlayerUC> playerUcs = playerUCPanel.Controls.OfType<PlayerUC>().ToList();
             foreach (var playerUc in playerUcs)
             {
                 playerUc.RefreshData();
+                foreach(var card in playerUc.Player.Cards)
+                {
+                    card.DisplayOwnerName();
+                }
             }
         }
 
@@ -147,17 +173,25 @@ namespace vetsibere
         {
             EmptyField();
             TakePlayersCards(playersList);
+            Console.WriteLine("Cards on the field: " + cards.Count);
             List<Card> winners = GetWinnerCards();
+            RefreshPanels();
             if (winners.Count > 1)
             {
-                PlayRound(SelectWinnerPlayers(winners));
+                players = SelectWinnerPlayers(winners);
+                cards.Clear();
+                return;
             }
-            SelectWinnerPlayers(winners)[0].AddCards(cards);
+            SelectWinnerPlayers(winners)[0].AddCards(cardsPile);
+            players = GameData.Instance.Players.Where(x => x.Cards.Count > 0).ToList();
+
             CheckEnd();
+            cards.Clear();
+            cardsPile.Clear();
         }
 
         /// <summary>
-        /// Removes players with no cards left. Check for game winner.
+        /// Removes players with no cards left from game. Checks for game winner.
         /// </summary>
         private void CheckEnd()
         {
@@ -176,9 +210,10 @@ namespace vetsibere
                 players.Remove(player);
             }
 
-            if (players.Count == 0)
+            if (players.Count == 1)
             {
                 MessageBox.Show("Vyhral hrac " + players[0].Name);
+                autoPlayFlag = false;
                 Close();
             }
         }
@@ -201,16 +236,15 @@ namespace vetsibere
         }
 
         /// <summary>
-        /// Empty the field and cards list
+        /// Empty the game field controls
         /// </summary>
         private void EmptyField()
         {
-            cards.Clear();
             gameField.Controls.Clear();
         }
 
         /// <summary>
-        /// Returns list of cards with highest value on the field. Adds loser cards to cards pile.
+        /// Returns list of cards with highest value on the field. Adds loser and winner cards to cards pile.
         /// </summary>
         /// <returns>List of cards with highest value</returns>
         private List<Card> GetWinnerCards()
@@ -219,6 +253,8 @@ namespace vetsibere
             var winnerCards = cards.Where(x => (int) x.CardName == highestValueCard).ToList();
             var loserCards = cards.Where(x => (int)x.CardName != highestValueCard).ToList();
             cardsPile.AddRange(loserCards);
+            cardsPile.AddRange(winnerCards);
+            cards.Clear();
             return winnerCards;
         }
 
@@ -231,8 +267,41 @@ namespace vetsibere
             foreach (var player in playersList)
             {
                 Card card = player.PopCard();
-                cards.Add(card);
-                DisplayCard(card);
+                if (card != null)
+                {
+                    cards.Add(card);
+                    DisplayCard(card);
+                }
+            }
+        }
+
+        private void ChckAutoPlay_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chckAutoPlay.Checked)
+            {
+                autoPlayFlag = true;
+            } else
+            {
+                autoPlayFlag = false;
+            }
+        }
+
+        /// <summary>
+        /// Thread function which handles Autoplay feature
+        /// </summary>
+        private void AutoPlay()
+        {
+            while(true)
+            {
+                if (autoPlayFlag)
+                {
+                    Invoke(new Action(() => { BtnRound.PerformClick(); }));
+
+                    Thread.Sleep(1000);
+                    continue;
+                }
+
+                Thread.Sleep(200);
             }
         }
     }

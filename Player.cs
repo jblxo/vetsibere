@@ -47,20 +47,27 @@ namespace vetsibere
         }
 
         /// <summary>
-        /// Adds cards to player's deck
+        /// Adds cards to player's deck. Changes the ownership of the cards.
         /// </summary>
         /// <param name="newCards">List of cards</param>
         public void AddCards(List<Card> newCards)
         {
+            foreach(var card in newCards)
+            {
+                card.Owner = this;
+            }
+
             this.Cards.AddRange(newCards);
         }
 
         /// <summary>
-        /// Adds card to player's deck
+        /// Adds card to player's deck. Changes the ownership of the card.
         /// </summary>
         /// <param name="card">Card to be added</param>
         public void AddCards(Card card)
         {
+            card.Owner = this;
+
             this.Cards.Add(card);
         }
     }
