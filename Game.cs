@@ -158,10 +158,6 @@ namespace vetsibere
             foreach (var playerUc in playerUcs)
             {
                 playerUc.RefreshData();
-                foreach(var card in playerUc.Player.Cards)
-                {
-                    card.DisplayOwnerName();
-                }
             }
         }
 
@@ -173,6 +169,10 @@ namespace vetsibere
         {
             EmptyField();
             TakePlayersCards(playersList);
+            foreach (var card in cards)
+            {
+                card.DisplayOwnerName();
+            }
             Console.WriteLine("Cards on the field: " + cards.Count);
             List<Card> winners = GetWinnerCards();
             RefreshPanels();
