@@ -8,7 +8,7 @@ namespace vetsibere
 {
     public partial class Settings : Form
     {
-        private string _pathToSettings;
+        private readonly string _pathToSettings;
 
         public Settings()
         {
@@ -24,7 +24,7 @@ namespace vetsibere
         {
             XmlSerializer reader =
                 new XmlSerializer(typeof(XMLSettings));
-            StreamReader file = new System.IO.StreamReader(
+            StreamReader file = new StreamReader(
                 _pathToSettings);
             XMLSettings settings = (XMLSettings) reader.Deserialize(file);
             file.Close();
@@ -33,7 +33,7 @@ namespace vetsibere
             nudPlyrCount.Value = GameData.Instance.PlayersCount;
         }
 
-        private void NudPlyrCount_ValueChanged(object sender, System.EventArgs e)
+        private void NudPlyrCount_ValueChanged(object sender, EventArgs e)
         {
             GameData.Instance.PlayersCount = (int) nudPlyrCount.Value;
 
