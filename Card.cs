@@ -1,20 +1,55 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace vetsibere
 {
-    class Card
+    public partial class Card : UserControl
     {
-        private Size _size = new Size(40, 120);
-        public Point Position = new Point(0, 0);
-        public int Value { get; set; } = -1;
+        public CardNames CardName { get; set; }
+        public CardTypes Type { get; set; }
         public string ImagePath { get; set; } = Application.StartupPath + "\\Images\\";
-
-        public Card() { }
-
-        public void Draw(Graphics g)
+        public Player Owner { get; set; }
+        public Card(CardTypes type, CardNames name)
         {
-            g.DrawRectangle(Pens.Black, new Rectangle(Position, _size));
+            Type = type;
+            CardName = name;
+
+            InitializeComponent();
+
+            lblName.Text = Type + " " + CardName;
+            lblValue.Text = (int) CardName + "";
         }
+
+        public void DisplayOwnerName()
+        {
+            lblOwner.Text = Owner.Name;
+        }
+    }
+
+    public enum CardTypes
+    {
+        Kule = 1,
+        Srdce = 2,
+        Listy = 3,
+        Zaludy = 4
+    }
+
+    public enum CardNames
+    {
+        Sedm = 7,
+        Osm = 8,
+        Devet = 9,
+        Deset = 10,
+        Spodek = 2,
+        Svrsek = 3,
+        Kral = 4,
+        Eso = 12
     }
 }
