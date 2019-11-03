@@ -8,7 +8,7 @@ namespace vetsibere
 {
     public class XMLSettings
     {
-        public string[] PlayerNames;
+        public int PlayersCount { get; set; } = 2;
         public XMLSettings() { }
     }
 }
