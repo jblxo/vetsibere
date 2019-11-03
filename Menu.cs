@@ -19,7 +19,7 @@ namespace vetsibere
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            Settings.LoadSettingsFromXML();
+            new Settings();
             if (GameData.Instance.PlayerNames.Count > 1)
             {
                 SwitchForms(new Game());

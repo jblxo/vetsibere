@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace vetsibere
 {
     public partial class Settings : Form
     {
+        public static string _pathToSettings = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +  "//Settings.xml";
+
         public Settings()
         {
+            LoadSettings();
             InitializeComponent();
         }
 
-        private void NudPlyrCount_ValueChanged(object sender, System.EventArgs e)
+        private static void LoadSettings()
         {
             XmlSerializer reader =
                 new XmlSerializer(typeof(XMLSettings));
@@ -22,8 +26,7 @@ namespace vetsibere
             XMLSettings settings = (XMLSettings) reader.Deserialize(file);
             file.Close();
 
-            GameData.Instance.PlayersCount = settings.PlayersCount;
-            nudPlyrCount.Value = GameData.Instance.PlayersCount;
+            GameData.Instance.PlayerNames = settings.PlayerNames.ToList();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -65,5 +68,10 @@ namespace vetsibere
             writer.Serialize(file, settings);
             file.Close();
         }
+    }
+
+    public class XMLSettings
+    {
+        public string[] PlayerNames;
     }
 }
