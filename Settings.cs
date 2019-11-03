@@ -20,25 +20,8 @@ namespace vetsibere
             XMLSettings settings = (XMLSettings) reader.Deserialize(file);
             file.Close();
 
-            GameData.Instance.PlayerNames = settings.PlayerNames.ToList();
-
-            foreach (string s in GameData.Instance.PlayerNames)
-            {
-                AddPlayer(new PlayerSettingsUC(s));
-            }
-        }
-
-        public static void LoadSettingsFromXML()
-        {
-            XmlSerializer reader =
-                new XmlSerializer(typeof(XMLSettings));
-            StreamReader file = new StreamReader(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
-                              "//Settings.xml");
-            XMLSettings settings = (XMLSettings)reader.Deserialize(file);
-            file.Close();
-
-            GameData.Instance.PlayerNames = settings.PlayerNames.ToList();
+            GameData.Instance.PlayersCount = settings.PlayersCount;
+            nudPlyrCount.Value = GameData.Instance.PlayersCount;
         }
 
         private void NudPlyrCount_ValueChanged(object sender, EventArgs e)
