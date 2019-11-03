@@ -19,15 +19,7 @@ namespace vetsibere
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            Settings.LoadSettingsFromXML();
-            if (GameData.Instance.PlayerNames.Count > 1)
-            {
-                SwitchForms(new Game());
-            }
-            else
-            {
-                MessageBox.Show("Malo hráču");
-            }
+            SwitchForms(new Game());
         }
 
         private void BtnHelp_Click(object sender, EventArgs e)
