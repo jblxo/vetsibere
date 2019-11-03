@@ -2,7 +2,7 @@
 
 namespace vetsibere
 {
-    class GameData
+    public class GameData
     {
         public static GameData Instance = new GameData();
         public int PlayersCount = 2;
