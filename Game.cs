@@ -44,6 +44,12 @@ namespace vetsibere
             InitializeComponent();
 
             FormClosed += Game_FormClosed;
+            FormClosing += OnFormClosing;
+        }
+
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            autoPlayThread.Abort();
         }
 
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
@@ -95,7 +101,7 @@ namespace vetsibere
             for (int i = 0; i < playerCount; i++)
             {
                 var playerCards = cards.GetRange(i * cardsPerPlayer, cardsPerPlayer);
-                Player player = _factory.CreatePlayer(i, playerCards);
+                Player player = _factory.CreatePlayer(GameData.Instance.PlayerNames[i],i, playerCards);
                 GameData.Instance.Players.Add(player);
             }
         }
@@ -173,6 +179,7 @@ namespace vetsibere
             {
                 card.DisplayOwnerName();
             }
+            Console.WriteLine("Cards on the field: " + cards.Count);
             List<Card> winners = GetWinnerCards();
             RefreshPanels();
             if (winners.Count > 1)
@@ -248,6 +255,11 @@ namespace vetsibere
         /// <returns>List of cards with highest value</returns>
         private List<Card> GetWinnerCards()
         {
+            if (cards.Count < 1)
+            {
+                return new List<Card>();
+            }
+
             var highestValueCard = cards.Max(x => (int) x.CardName);
             var winnerCards = cards.Where(x => (int) x.CardName == highestValueCard).ToList();
             var loserCards = cards.Where(x => (int)x.CardName != highestValueCard).ToList();
@@ -294,9 +306,12 @@ namespace vetsibere
             {
                 if (autoPlayFlag)
                 {
-                    Invoke(new Action(() => { BtnRound.PerformClick(); }));
+                    if (!IsDisposed)
+                    {
+                        Invoke(new Action(() => { BtnRound.PerformClick(); }));
+                    }
 
-                    Thread.Sleep(1000);
+                    Thread.Sleep(200);
                     continue;
                 }
 

@@ -1,5 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace vetsibere
@@ -8,6 +14,7 @@ namespace vetsibere
     {
         public CardNames CardName { get; set; }
         public CardTypes Type { get; set; }
+        public string ImagePath { get; set; } = Application.StartupPath + "\\Images\\";
         public Player Owner { get; set; }
         public Card(CardTypes type, CardNames name)
         {
@@ -15,6 +22,9 @@ namespace vetsibere
             CardName = name;
 
             InitializeComponent();
+
+            lblName.Text = Type + " " + CardName;
+            lblValue.Text = (int) CardName + "";
 
             Bitmap cardImage = (Bitmap) Properties.Resources.ResourceManager.GetObject($"_{(int) name}_{(int) type}");
             pbImage.Image = cardImage;
@@ -35,7 +45,7 @@ namespace vetsibere
     }
 
     public enum CardNames
-    {   
+    {
         Sedm = 7,
         Osm = 8,
         Devet = 9,

@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>vetsibere</RootNamespace>
     <AssemblyName>vetsibere</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -67,6 +68,12 @@
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerSettingsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PlayerSettingsUC.Designer.cs">
+      <DependentUpon>PlayerSettingsUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlayerUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -81,7 +88,6 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="XMLSettings.cs" />
     <EmbeddedResource Include="Card.resx">
       <DependentUpon>Card.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayerSettingsUC.resx">
+      <DependentUpon>PlayerSettingsUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerUC.resx">
       <DependentUpon>PlayerUC.cs</DependentUpon>
@@ -102,7 +111,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
@@ -119,105 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\2-1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\2-2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\2-3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\2-4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\3-1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\3-2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\3-3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\3-4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\4-1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\4-2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\4-3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\4-4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\5-4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\7-1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\7-2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\7-3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\7-4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\8-1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\8-2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\8-3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\8-4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\9-1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\9-2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\9-3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\9-4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\10-1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\10-2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\10-3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\10-4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\12-1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\12-2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\12-3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\12-4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
