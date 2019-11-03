@@ -179,6 +179,20 @@ namespace vetsibere
             {
                 card.DisplayOwnerName();
             }
+
+            if (cards.Count < 1)
+            {
+                RefreshPanels();
+                players[0].AddCards(cardsPile);
+                players = GameData.Instance.Players.Where(x => x.Cards.Count > 0).ToList();
+
+                CheckEnd();
+                cards.Clear();
+                cardsPile.Clear();
+                return;
+            }
+
+
             List<Card> winners = GetWinnerCards();
             RefreshPanels();
             if (winners.Count > 1)
@@ -254,10 +268,6 @@ namespace vetsibere
         /// <returns>List of cards with highest value</returns>
         private List<Card> GetWinnerCards()
         {
-            if (cards.Count < 1)
-            {
-                return new List<Card>();
-            }
             var highestValueCard = cards.Max(x => (int) x.CardName);
             var winnerCards = cards.Where(x => (int) x.CardName == highestValueCard).ToList();
             var loserCards = cards.Where(x => (int)x.CardName != highestValueCard).ToList();
