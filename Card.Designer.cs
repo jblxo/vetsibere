@@ -2,12 +2,12 @@
 {
     partial class Card
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -22,8 +22,8 @@
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -34,9 +34,9 @@
             this.lblOwner = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // lblName
-            // 
+            //
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblName.Location = new System.Drawing.Point(0, 0);
             this.lblName.Name = "lblName";
@@ -44,17 +44,17 @@
             this.lblName.TabIndex = 0;
             this.lblName.Text = "cardName";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // pbImage
-            // 
+            //
             this.pbImage.Location = new System.Drawing.Point(0, 85);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(150, 140);
             this.pbImage.TabIndex = 1;
             this.pbImage.TabStop = false;
-            // 
+            //
             // lblValue
-            // 
+            //
             this.lblValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblValue.Location = new System.Drawing.Point(3, 59);
             this.lblValue.Name = "lblValue";
@@ -64,7 +64,7 @@
             this.lblValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblOwner
-            // 
+            //
             this.lblOwner.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblOwner.Location = new System.Drawing.Point(0, 23);
             this.lblOwner.Name = "lblOwner";
@@ -72,9 +72,9 @@
             this.lblOwner.TabIndex = 3;
             this.lblOwner.Text = "ownerName";
             this.lblOwner.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // Card
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;

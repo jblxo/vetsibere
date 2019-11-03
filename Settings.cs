@@ -13,11 +13,11 @@ namespace vetsibere
 
         public Settings()
         {
-            LoadSettings();
             InitializeComponent();
+            LoadSettings();
         }
 
-        private static void LoadSettings()
+        private void LoadSettings()
         {
             if (File.Exists(_pathToSettings))
             {
@@ -29,6 +29,11 @@ namespace vetsibere
                 file.Close();
 
                 GameData.Instance.PlayerNames = settings.PlayerNames.ToList();
+
+                foreach (var item in GameData.Instance.PlayerNames)
+                {
+                    AddPlayer(new PlayerSettingsUC(item));
+                }
             }
         }
 

@@ -25,6 +25,9 @@ namespace vetsibere
 
             lblName.Text = Type + " " + CardName;
             lblValue.Text = (int) CardName + "";
+
+            Bitmap cardImage = (Bitmap) Properties.Resources.ResourceManager.GetObject($"_{(int) name}_{(int) type}");
+            pbImage.Image = cardImage;
         }
 
         public void DisplayOwnerName()
