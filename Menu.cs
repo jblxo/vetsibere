@@ -19,6 +19,7 @@ namespace vetsibere
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
+            new Settings();
             SwitchForms(new Game());
         }
 
