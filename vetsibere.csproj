@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>vetsibere</RootNamespace>
     <AssemblyName>vetsibere</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -67,6 +68,12 @@
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerSettingsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PlayerSettingsUC.Designer.cs">
+      <DependentUpon>PlayerSettingsUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlayerUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -90,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayerSettingsUC.resx">
+      <DependentUpon>PlayerSettingsUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerUC.resx">
       <DependentUpon>PlayerUC.cs</DependentUpon>

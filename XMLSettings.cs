@@ -6,9 +6,5 @@ using System.Threading.Tasks;
 
 namespace vetsibere
 {
-    public class XMLSettings
-    {
-        public int PlayersCount { get; set; } = 2;
-        public XMLSettings() { }
-    }
+  
 }
