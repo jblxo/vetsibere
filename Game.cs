@@ -49,7 +49,7 @@ namespace vetsibere
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
-            autoPlayFlag = false;
+            autoPlayThread.Abort();
         }
 
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
