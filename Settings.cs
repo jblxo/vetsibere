@@ -19,14 +19,17 @@ namespace vetsibere
 
         private static void LoadSettings()
         {
-            XmlSerializer reader =
-                new XmlSerializer(typeof(XMLSettings));
-            StreamReader file = new StreamReader(
-                _pathToSettings);
-            XMLSettings settings = (XMLSettings) reader.Deserialize(file);
-            file.Close();
+            if (File.Exists(_pathToSettings))
+            {
+                XmlSerializer reader =
+                    new XmlSerializer(typeof(XMLSettings));
+                StreamReader file = new StreamReader(
+                    _pathToSettings);
+                XMLSettings settings = (XMLSettings) reader.Deserialize(file);
+                file.Close();
 
-            GameData.Instance.PlayerNames = settings.PlayerNames.ToList();
+                GameData.Instance.PlayerNames = settings.PlayerNames.ToList();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
