@@ -26,10 +26,6 @@ namespace vetsibere
         {
             XmlSerializer reader =
                 new XmlSerializer(typeof(XMLSettings));
-            StreamReader file = new StreamReader(
-                _pathToSettings);
-            XMLSettings settings = (XMLSettings) reader.Deserialize(file);
-            file.Close();
 
             GameData.Instance.PlayerNames = settings.PlayerNames.ToList();
 
@@ -41,15 +37,17 @@ namespace vetsibere
 
         public static void LoadSettingsFromXML()
         {
-            XmlSerializer reader =
-                new XmlSerializer(typeof(XMLSettings));
-            StreamReader file = new StreamReader(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
-                              "//Settings.xml");
-            XMLSettings settings = (XMLSettings)reader.Deserialize(file);
-            file.Close();
+            if (File.Exists(_pathToSettings))
+            {
+                StreamReader file = new StreamReader(
+                    _pathToSettings);
+                XMLSettings settings = (XMLSettings)reader.Deserialize(file);
+                file.Close();
 
-            GameData.Instance.PlayerNames = settings.PlayerNames.ToList();
+                GameData.Instance.PlayersCount = settings.PlayersCount;
+                nudPlyrCount.Value = GameData.Instance.PlayersCount;
+                GameData.Instance.PlayerNames = settings.PlayerNames.ToList();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
