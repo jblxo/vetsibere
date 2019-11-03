@@ -95,7 +95,7 @@ namespace vetsibere
             for (int i = 0; i < playerCount; i++)
             {
                 var playerCards = cards.GetRange(i * cardsPerPlayer, cardsPerPlayer);
-                Player player = _factory.CreatePlayer(GameData.Instance.PlayerNames[i],i, playerCards);
+                Player player = _factory.CreatePlayer(i, playerCards);
                 GameData.Instance.Players.Add(player);
             }
         }
@@ -173,7 +173,6 @@ namespace vetsibere
             {
                 card.DisplayOwnerName();
             }
-            Console.WriteLine("Cards on the field: " + cards.Count);
             List<Card> winners = GetWinnerCards();
             RefreshPanels();
             if (winners.Count > 1)

@@ -12,9 +12,9 @@ namespace vetsibere
         public List<Card> Cards { get; }
         public string Name { get; set; }
 
-        public Player(string name,int playerNum, List<Card> cards)
+        public Player(int playerNum, List<Card> cards)
         {
-            this.Name = name;
+            this.Name = "Player " + playerNum;
             foreach (var card in cards)
             {
                 card.Owner = this;

@@ -39,7 +39,7 @@
             this.gameField.Location = new System.Drawing.Point(2, 1);
             this.gameField.Margin = new System.Windows.Forms.Padding(2);
             this.gameField.Name = "gameField";
-            this.gameField.Size = new System.Drawing.Size(1206, 230);
+            this.gameField.Size = new System.Drawing.Size(1691, 230);
             this.gameField.TabIndex = 0;
             // 
             // BtnRound
@@ -59,7 +59,7 @@
             this.playerUCPanel.Location = new System.Drawing.Point(2, 235);
             this.playerUCPanel.Margin = new System.Windows.Forms.Padding(2);
             this.playerUCPanel.Name = "playerUCPanel";
-            this.playerUCPanel.Size = new System.Drawing.Size(1206, 70);
+            this.playerUCPanel.Size = new System.Drawing.Size(1691, 70);
             this.playerUCPanel.TabIndex = 1;
             // 
             // chckAutoPlay
@@ -77,7 +77,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1211, 465);
+            this.ClientSize = new System.Drawing.Size(1695, 465);
             this.Controls.Add(this.chckAutoPlay);
             this.Controls.Add(this.playerUCPanel);
             this.Controls.Add(this.BtnRound);
