@@ -44,6 +44,12 @@ namespace vetsibere
             InitializeComponent();
 
             FormClosed += Game_FormClosed;
+            FormClosing += OnFormClosing;
+        }
+
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            autoPlayThread.Abort();
         }
 
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
@@ -248,6 +254,11 @@ namespace vetsibere
         /// <returns>List of cards with highest value</returns>
         private List<Card> GetWinnerCards()
         {
+            if (cards.Count < 1)
+            {
+                return new List<Card>();
+            }
+
             var highestValueCard = cards.Max(x => (int) x.CardName);
             var winnerCards = cards.Where(x => (int) x.CardName == highestValueCard).ToList();
             var loserCards = cards.Where(x => (int)x.CardName != highestValueCard).ToList();
@@ -294,9 +305,12 @@ namespace vetsibere
             {
                 if (autoPlayFlag)
                 {
-                    Invoke(new Action(() => { BtnRound.PerformClick(); }));
+                    if (!IsDisposed)
+                    {
+                        Invoke(new Action(() => { BtnRound.PerformClick(); }));
+                    }
 
-                    Thread.Sleep(1000);
+                    Thread.Sleep(200);
                     continue;
                 }
 
