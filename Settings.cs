@@ -22,15 +22,18 @@ namespace vetsibere
 
         private void LoadSettings()
         {
-            XmlSerializer reader =
-                new XmlSerializer(typeof(XMLSettings));
-            StreamReader file = new StreamReader(
-                _pathToSettings);
-            XMLSettings settings = (XMLSettings) reader.Deserialize(file);
-            file.Close();
+            if (File.Exists(_pathToSettings))
+            {
+                XmlSerializer reader =
+                    new XmlSerializer(typeof(XMLSettings));
+                StreamReader file = new StreamReader(
+                    _pathToSettings);
+                XMLSettings settings = (XMLSettings) reader.Deserialize(file);
+                file.Close();
 
-            GameData.Instance.PlayersCount = settings.PlayersCount;
-            nudPlyrCount.Value = GameData.Instance.PlayersCount;
+                GameData.Instance.PlayersCount = settings.PlayersCount;
+                nudPlyrCount.Value = GameData.Instance.PlayersCount;
+            }
         }
 
         private void NudPlyrCount_ValueChanged(object sender, EventArgs e)
