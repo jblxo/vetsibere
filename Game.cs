@@ -179,6 +179,7 @@ namespace vetsibere
             {
                 card.DisplayOwnerName();
             }
+            Console.WriteLine("Cards on the field: " + cards.Count);
             List<Card> winners = GetWinnerCards();
             RefreshPanels();
             if (winners.Count > 1)
