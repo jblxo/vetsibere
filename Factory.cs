@@ -28,9 +28,9 @@ namespace vetsibere
         /// <param name="userId">Player ID</param>
         /// <param name="cards">Player's deck of Cards</param>
         /// <returns>New Player</returns>
-        public Player CreatePlayer(int userId, List<Card> cards)
+        public Player CreatePlayer(string name,int userId, List<Card> cards)
         {
-            Player player = new Player(userId, cards);
+            Player player = new Player(name,userId, cards);
             return player;
         }
 
