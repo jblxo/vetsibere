@@ -3,26 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Serialization;
 
 namespace vetsibere
 {
     public partial class Settings : Form
     {
-        private readonly string _pathToSettings;
-
         public Settings()
         {
-            _pathToSettings = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
-                              "//Settings.xml";
-
             InitializeComponent();
-
-            LoadSettings();
         }
 
-        private void LoadSettings()
+        private void NudPlyrCount_ValueChanged(object sender, System.EventArgs e)
         {
             XmlSerializer reader =
                 new XmlSerializer(typeof(XMLSettings));
