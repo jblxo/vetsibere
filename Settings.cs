@@ -34,6 +34,9 @@ namespace vetsibere
                 {
                     AddPlayer(new PlayerSettingsUC(item));
                 }
+
+                GameData.Instance.AutoplayTimerLength = settings.AutoplayTimerLength;
+                numUpDownAutTimer.Value = settings.AutoplayTimerLength;
             }
         }
 
@@ -67,7 +70,8 @@ namespace vetsibere
 
             XMLSettings settings = new XMLSettings
             {
-                PlayerNames = GetNames().ToArray()
+                PlayerNames = GetNames().ToArray(),
+                AutoplayTimerLength = GameData.Instance.AutoplayTimerLength
             };
 
             XmlSerializer writer = new XmlSerializer(typeof(XMLSettings));
@@ -76,10 +80,18 @@ namespace vetsibere
             writer.Serialize(file, settings);
             file.Close();
         }
+
+        private void numUpDownAutTimer_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown numericUpDown = (NumericUpDown) sender;
+
+            GameData.Instance.AutoplayTimerLength = (int)numericUpDown.Value;
+        }
     }
 
     public class XMLSettings
     {
         public string[] PlayerNames;
+        public int AutoplayTimerLength = 1;
     }
 }
