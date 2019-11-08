@@ -317,12 +317,11 @@ namespace vetsibere
                 if (autoPlayFlag)
                 {
                     Invoke(new Action(() => { BtnRound.PerformClick(); }));
-
+                    
+                    Console.WriteLine($@"Auto-playing round ({autoplaySleepLength} ms)");
                     Thread.Sleep(autoplaySleepLength);
                     continue;
                 }
-
-                Thread.Sleep(autoplaySleepLength);
             }
         }
     }
