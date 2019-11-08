@@ -67,6 +67,7 @@ namespace vetsibere
         private void Settings_FormClosing(object sender, FormClosingEventArgs e)
         {
             GameData.Instance.PlayerNames = GetNames();
+            GameData.Instance.AutoplayTimerLength = (int)numUpDownAutTimer.Value;
 
             XMLSettings settings = new XMLSettings
             {
@@ -79,13 +80,6 @@ namespace vetsibere
             FileStream file = File.Create(path);
             writer.Serialize(file, settings);
             file.Close();
-        }
-
-        private void numUpDownAutTimer_ValueChanged(object sender, EventArgs e)
-        {
-            NumericUpDown numericUpDown = (NumericUpDown) sender;
-
-            GameData.Instance.AutoplayTimerLength = (int)numericUpDown.Value;
         }
     }
 

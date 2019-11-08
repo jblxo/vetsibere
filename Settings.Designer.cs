@@ -96,7 +96,6 @@
             0,
             0,
             0});
-            this.numUpDownAutTimer.ValueChanged += new System.EventHandler(this.numUpDownAutTimer_ValueChanged);
             // 
             // label1
             // 
