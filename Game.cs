@@ -310,17 +310,18 @@ namespace vetsibere
         /// </summary>
         private void AutoPlay()
         {
+            int autoplaySleepLength = GameData.Instance.AutoplayTimerLength * 1000;
+
             while(true)
             {
                 if (autoPlayFlag)
                 {
                     Invoke(new Action(() => { BtnRound.PerformClick(); }));
-
-                    Thread.Sleep(200);
+                    
+                    Console.WriteLine($@"Auto-playing round ({autoplaySleepLength} ms)");
+                    Thread.Sleep(autoplaySleepLength);
                     continue;
                 }
-
-                Thread.Sleep(200);
             }
         }
     }
